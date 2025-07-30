@@ -65,8 +65,6 @@ bytes_to_human() {
     fi
 }
 
-clear
-
 # System info
 hostname=$(hostname)
 os_name=$(lsb_release -d 2>/dev/null | cut -f2 | sed 's/^[[:space:]]*//' || cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)
