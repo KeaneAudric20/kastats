@@ -239,8 +239,21 @@ EOF
 
 show_completion_message() {
     echo ""
+
+    local box_width=77
+    local title="INSTALLATION COMPLETE!"
+    local title_len=${#title}
+    local padding=$(( (box_width - title_len) / 2 ))
+    local remaining=$(( box_width - title_len - padding ))
+
+    # Build padded content
+    local padded=""
+    for ((i=0; i<padding; i++)); do padded+=" "; done
+    padded+="${BOLD}${WHITE}${title}${NC}"
+    for ((i=0; i<remaining; i++)); do padded+=" "; done
+
     echo -e "${BOLD}${GREEN}┌─────────────────────────────────────────────────────────────────────────────┐${NC}"
-    echo -e "${BOLD}${GREEN}│${NC}                          ${BOLD}${WHITE}INSTALLATION COMPLETE!${NC}                         ${BOLD}${GREEN}│${NC}"
+    echo -e "${BOLD}${GREEN}│${NC}${padded}${BOLD}${GREEN}│${NC}"
     echo -e "${BOLD}${GREEN}└─────────────────────────────────────────────────────────────────────────────┘${NC}"
     echo ""
     echo -e "${BOLD}${WHITE}Installation Summary:${NC}"
